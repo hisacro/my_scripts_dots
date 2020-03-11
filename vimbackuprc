@@ -1,0 +1,47 @@
+" Preferences.
+
+" Number
+:set number
+:set relativenumber
+
+" 2 ctrl+n for num and 3 ctrl+n for relnum
+:nmap <C-N><C-N> :set nu!<CR>
+:nmap <C-N><C-N><C-N> :set rnu!<CR>
+
+" interactive shell to recog .bashrc
+:set shell=/bin/bash\ -i
+
+" Plugins will be downloaded under the specified directory.
+call plug#begin('~/.vim/plugged')
+
+" auto complete file directory
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf'
+
+" status colors
+Plug 'itchyny/lightline.vim'
+"
+"
+" Plug 'tpope/vim-sensible'
+"
+" Plug 'junegunn/seoul256.vim'
+"
+" Latex Plugins Finally!!
+" Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'lervag/vimtex'
+
+call plug#end()
+
+" get lightline working
+set laststatus=2
+
+" hiding mode
+set noshowmode
+
+" color scheme 
+let g:lightline = {
+  		\ 'colorscheme': 'Tomorrow_Night_Eighties',
+		\ }
+
+" PDF viewer
+let g:vimtex_view_method = 'zathura'
