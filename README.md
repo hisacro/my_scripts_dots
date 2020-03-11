@@ -4,4 +4,4 @@
 
 - `wall_paper.sh` `colorwm.sh` are xfwm4 scripts to changes background and wm schemes
 
-- `wally.sh` auto rice end script ##\m/ 
+- `wally.sh` auto rice end script **\m/** 
