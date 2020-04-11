@@ -1,0 +1,15 @@
+# -- THEME AUTO-WRITTEN DO NOT EDIT
+include "/usr/share/themes/TerminalGreen/gtk-2.0/gtkrc"
+
+style "user-font" {
+	font_name = "Terminus (TTF) Medium 12"
+}
+
+widget_class "*" style "user-font"
+
+gtk-font-name="Terminus (TTF) Medium 12"
+
+include "/home/hisacro/.gtkrc.mine"
+
+# -- THEME AUTO-WRITTEN DO NOT EDIT
+gtk-icon-theme-name="Solarized-Green-gtk-theme-iconpack"
