@@ -15,7 +15,7 @@ wed_h=5
 cover_name_include=album,front,cover
 equalizer_bands=-7.2,7.68,-2.88,6.72,0.96,10.08,4.32,4.8,0,-1.92
 filepopup_delay=3
-generic_title_format=${?album:${album} - }${title}
+generic_title_format=${?artist:${artist} - }${title}
 net_buffer_kb=272
 output_buffer_size=10000
 repeat=TRUE
@@ -23,17 +23,18 @@ save_url_history=FALSE
 show_filepopup_for_tuple=FALSE
 
 [audgui]
-about_win=348,207,582,351
+about_win=349,206,582,351
+clear_song_fields=FALSE
 equalizer_win=792,219,288,288
-filebrowser_win=326,-3,679,484
+filebrowser_win=-20,-7,678,484
 filesel_path=/home/hisacro/Downloads
-info_win=286,330,648,395
-jump_to_track_win=391,75,576,480
+info_win=291,325,648,395
+jump_to_track_win=399,67,576,480
 no_confirm_playlist_delete=TRUE
 playlist_export_win=156,35,960,720
-playlist_import_win=154,33,780,585
+playlist_import_win=152,31,960,720
 playlist_path=file:///home/hisacro/Downloads
-url_opener_win=893,304,384,165
+url_opener_win=895,302,384,165
 
 [filewriter]
 file_path=file:///home/hisacro/Downloads/xwaveradio
@@ -98,13 +99,13 @@ equalizer_x=1654
 equalizer_y=606
 mainwin_font=Terminus (TTF) Medium 9
 player_shaded=TRUE
-player_x=84
-player_y=785
+player_x=132
+player_y=786
 playlist_font=Terminus (TTF) Medium 10
-playlist_x=962
-playlist_y=362
+playlist_x=991
+playlist_y=143
 show_remaining_time=TRUE
-skin=~/.config/audacious/Skins/Classic_Green_new.wsz
+skin=/usr/share/audacious/Skins/Classic_Green_new.wsz
 
 [skins-layout]
 albumart=1655,379,288,192
@@ -112,7 +113,7 @@ blur_scope=1103,147,288,192
 cairo-spectrum=1499,306,790,139
 gl-spectrum=1103,147,288,192
 lyricwiki=79,338,288,192
-playlist-manager=356,466,288,192
+playlist-manager=357,465,288,192
 search-tool=981,146,288,192
 
 [statusicon]
