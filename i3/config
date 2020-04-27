@@ -37,7 +37,6 @@ exec_always --no-startup-id autotiling
 exec --no-startup-id ~/.fehbg
 # open this file
 bindsym $mod+c exec i3-sensible-terminal -e "vim .config/i3/config"
-
 # Use pactl to adjust volume in PulseAudio.
 # set $refresh_i3status killall -SIGUSR1 i3status
 # bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
@@ -48,22 +47,29 @@ floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
-
+bindsym XF86Launch1 exec i3-sensible-terminal
 # start audacious
 bindsym $mod+a exec audacious
 
 # pulseaudio meter
 bindsym $mod+p exec pavucontrol
 
+# playerctl
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous 
+
 # kill focused window
 bindsym $mod+z kill
+bindsym $mod+semicolon kill
 
 # start dmenu (a program launcher)
 # bindsym $mod+d exec dmenu_run
 # start rofi applications
-bindsym $mod+d exec rofi -show run
+# bindsym $mod+d exec rofi -show run
+bindsym $mod+backslash exec rofi -show run
 # windows switcher
-bindsym $mod+Shift+d exec rofi -show window
+bindsym $mod+d exec rofi -show window
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -122,16 +128,16 @@ bindsym $mod+y focus mode_toggle
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
+set $ws1 "1:I"
+set $ws2 "2:II"
+set $ws3 "3:III"
+set $ws4 "4:IV"
+set $ws5 "5:V"
+set $ws6 "6:VI"
+set $ws7 "7:VII"
+set $ws8 "8:VIII"
+set $ws9 "9:IX"
+set $ws10 "10:X"
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -140,7 +146,7 @@ bindsym $mod+3 workspace number $ws3
 bindsym $mod+4 workspace number $ws4
 bindsym $mod+5 workspace number $ws5
 bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
+bindsym $mod+7 workspace number $ws7 
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
 bindsym $mod+0 workspace number $ws10
@@ -185,12 +191,18 @@ bindsym $mod+Ctrl+l resize grow width 1 px or 1 ppt
 # hide title bar only in titling mode
 # new_window 1pixel
 for_window [class=".*"] border pixel 1 
+# audacious neat
+for_window [class="(?i)audacious"] border pixel 0
+# mupdf 
+for_window [class="(?i)mupdf"] border pixel 0 
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
 	position	bottom	
-        status_command	i3status | ~/.config/i3status/i3_wrapper.py	
+        status_command	i3status | ~/.config/i3status/i3_wrapper.py
+        i3bar_command i3bar --transparency
+        strip_workspace_numbers yes
 	height	16
 	workspace_buttons	yes
 	colors{
@@ -200,20 +212,24 @@ bar {
 		#focused_workspace #887994 #0F1323
 		#inactive_workspace #887994 #0F1323
 		#neon green
-		background #00000
-		statusline #22cc16
-		focused_workspace #000000 #000000 #22cc16
+		background #000000
+		statusline #008000
+		#                  border background foreground
+		focused_workspace  #000000 #000000 #22cc16
 		inactive_workspace #000000 #000000 #0c6205
+		urgent_workspace   #000000 #d6ff00 #000000
 	}
 	#tray_output none
 	#tray_padding 2
 }
+# stealing focus from audacious
+# no_focus [class="(?i)audacious"]
 # client colors neon green
 # class                  border  backgr. text    indicator child_border
-#client.focused          #22cc16 #285577 #ffffff #22cc16   #22cc16
-client.focused          #22cc16 #285577 #ffffff #b7e0b6   #b7e0b6
-client.focused_inactive #333333 #5f676a #ffffff #000000   #000000
-client.unfocused        #333333 #222222 #888888 #000000   #000000
+#client.focused         #22cc16 #000000 #ffffff #22cc16   #22cc16
+client.focused          #22cc16 #000000 #0c6205 #b7e0b6   #b7e0b6
+client.focused_inactive #333333 #000000 #0c6205 #000000   #000000
+client.unfocused        #333333 #000000 #0c6205 #000000   #000000
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #222222
 #
