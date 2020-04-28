@@ -36,11 +36,11 @@
 
     /* position */ 
     x-offset: -40px;
-    y-offset: -240px;
+    y-offset: -260px;
     location: east;
   
-    width: 300px;
-    height: 250px;
+    width: 270px;
+    height: 200px;
 }
 
 sidebar {
