@@ -160,6 +160,8 @@ browser[type=content] > html {
 /*tabs-down*/
 #titlebar {
 -moz-box-ordinal-group: 3 !important;
+margin-bottom: -10px !important;
+
 }
 
 
@@ -172,14 +174,14 @@ browser[type=content] > html {
     min-height: 0px !important;
 	  padding-left: 0px !important;
 	  padding-bottom: 1px !important;
-	  padding-top: 0px !important;
+	  padding-top: 2.5px !important;
 }
 
 /* set height, width on the tabs  */
 tab {
 	  min-width: 35px !important;
 	  max-width: 35px !important;
-	  max-height: 20px !important;
+	  max-height: 10px !important;
 	  min-height: 21px !important;
 /*  min-width: 3px !important;
 	  max-width: 450px !important;
@@ -197,7 +199,7 @@ tab {
 }
 
 .tab-content .tab-icon-image{
-	
+
 }
 /*centre icon 
 .tabbrowser-tab:not([selected=true]) .tab-icon-image{
@@ -241,6 +243,8 @@ tab {
     border-color: var(--foreground) !important;
 }
 
+/* temporary solution - hiding one tab */
+tab:only-of-type { display: none; }
 
 
 
@@ -255,6 +259,8 @@ padding-top:1px !important;
 position: fixed;
 top: 0px;
 }
-
+ 
+/* hiding private browsing icon */
+#TabsToolbar .private-browsing-indicator { display: none; }
 
 

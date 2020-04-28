@@ -69,5 +69,18 @@ body{
 
 }
 
+@-moz-document url-prefix("about:debugging"){
+body{
+	background-color: var(--background) !important;
+	color: var(--foreground) !important;}
 
+}
 
+/* stylus menu */
+.firefox body {
+	background: var(--background) !important;
+        color: var(--foreground) !important;
+}
+a {
+	  transition: color .5s;
+}
