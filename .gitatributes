@@ -1,0 +1,3 @@
+*.css linguist-detectable=false
+*.bash linguist-detectable=true
+
