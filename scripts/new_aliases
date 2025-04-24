@@ -1,0 +1,8 @@
+alias cam='ffmpeg -re -stream_loop 1 -i /dev/video0 -f v4l2 /dev/video4'
+alias start='ffmpeg -re -stream_loop 2 -i ~/Videos/1.avi -f v4l2 /dev/video4 &&  ffmpeg -re -stream_loop 10 -i ~/Videos/4.avi -f v4l2 /dev/video4 &&  ffmpeg -re -stream_loop 10 -i ~/Videos/2.avi -f v4l2 /dev/video4 &&  ffmpeg -re -stream_loop 9 -i ~/Videos/3.avi -f v4l2 /dev/video4 && ffmpeg -re -stream_loop 2 -i ~/Videos/3.avi -f v4l2 /dev/video4 &&  ffmpeg -re -stream_loop 10 -i ~/Videos/4.avi -f v4l2 /dev/video4 && ffmpeg -re -stream_loop 3 -i ~/Videos/3.avi -f v4l2 /dev/video4 &&  ffmpeg -re -stream_loop -1 -i ~/Videos/3.avi -f v4l2 /dev/video4'
+alias start2='ffmpeg -re -stream_loop 1 -i ~/Videos/1.avi -f v4l2 /dev/video4 && ffmpeg -re -stream_loop 10 -i ~/Videos/6.avi -f v4l2 /dev/video4 &&  ffmpeg -re -stream_loop 10 -i ~/Videos/4.avi -f v4l2 /dev/video4 && ffmpeg -re -stream_loop -1 -i ~/Videos/3.avi -f v4l2 /dev/video4'
+
+alias start5='ffmpeg -re -stream_loop 2 -i ~/Videos/1.avi -f v4l2 /dev/video4 &&  ffmpeg -re -stream_loop 1 -i ~/Videos/3.avi -f v4l2 /dev/video4 &&  ffmpeg -re -stream_loop 1 -i ~/Videos/1.avi -f v4l2 /dev/video4 &&  ffmpeg -re -stream_loop -1 -i ~/Videos/3.avi -f v4l2 /dev/video4'
+
+
+alias start6='ffmpeg -re -stream_loop 2 -i ~/Videos/1.avi -f v4l2 /dev/video4 &&  ffmpeg -re -stream_loop 10 -i ~/Videos/4.avi -f v4l2 /dev/video4 &&  ffmpeg -re -stream_loop 5 -i ~/Videos/2.avi -f v4l2 /dev/video4 &&  ffmpeg -re -stream_loop -1 -i ~/Videos/3.avi -f v4l2 /dev/video4'

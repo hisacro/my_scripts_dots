@@ -1,0 +1,4 @@
+- JOB: "intercept -g /dev/input/event3 | dual-function-keys -c /home/hisacro/Scripts/tapping.yaml | uinput -d /dev/input/event3"
+  DEVICE:
+    EVENTS:
+      EV_KEY: [KEY_TAB, KEY_CAPSLOCK, KEY_SEMICOLON, KEY_E]

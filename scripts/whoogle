@@ -1,0 +1,4 @@
+cd /home/hisacro/Packages/whoogle-search/
+python3 -m venv venv
+source venv/bin/activate
+./run
