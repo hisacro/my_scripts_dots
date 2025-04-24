@@ -1,0 +1,15 @@
+#!/bin/env sh
+
+d=`date +%s`
+abootimg -x boot.img
+mkdir initrd_$d && cd initrd_$d && zcat ../initrd.img | cpio -i
+#
+# split ram disk into current dir
+#
+find . | cpio -o -H newc | gzip > ../initrd.img
+
+abootimg --create boot.img -k zImage -r initrd.img && abootimg --create boot.img -f bootimg.cfg -k zImage -r initrd.img
+
+
+
+

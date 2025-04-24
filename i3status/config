@@ -7,21 +7,48 @@
 # If the above line is not correctly displayed, fix your editor first!
 
 general {
-        colors = false 
-        interval = 5
+        colors = true 
+        interval = 10
 	output_format = "i3bar"
 }
 
 # order += "ipv6"
-order += "wireless _first_"
+# order += "wireless _first_"
 # order += "ethernet _first_"
+# order += "playerctl"
+order += "timer"
+order += "pomodoro"
 order += "battery all"
 # order += "disk /"
 order += "load"
 order += "cpu_temperature 0"
 order += "memory"
 order += "tztime local"
-order += "tztime 1"
+order += "tztime Indian"
+order += "tztime London"
+
+
+# playerctl {
+# 	color_bad = "#879dae"
+# 	color_good = "#979dae"
+# 	format_player = '[{title}]'
+# }
+
+timer {
+	format = ' {timer} '
+}
+
+pomodoro {
+	color_good = "#979dae"
+	color_bad = "#879dae"
+	format = " {mmss} {bar} "
+	format_active = " {mmss} {bar} "
+	format_stopped = " {mmss} {bar} "
+	format_break = " Break #{breakno} {mmss} {bar} "
+	format_break_stopped = " Break #{breakno} {bar} "
+	sound_pomodoro_end = "/home/hisacro/.config/i3status/pomo_start.ogg" 
+	sound_break_end = "/home/hisacro/.config/i3status/pomo_end.ogg"
+}
 
 wireless _first_ {
         format_up = "  %quality  "
@@ -34,11 +61,14 @@ ethernet _first_ {
 }
 
 battery all {
-        format = "  %status %remaining  "
-	status_chr = "⚡ "
+	status_chr = "⚡"
+	status_bat = " "
         # status_chr = "\\o/ ⚡"
-	status_bat = "/o\\"
-	low_threshold=10
+	# status_bat = "/o\\"
+	low_threshold=15
+	threshold_type="percentage"
+	format_percentage= "%.1f%s"
+	format = ".. %percentage%status .. " 
 }
 
 disk "/" {
@@ -46,7 +76,7 @@ disk "/" {
 }
 
 load {
-        format = "  %1min  "
+        format = "  %5min  "
 }
 
 cpu_temperature 0 {
@@ -62,7 +92,13 @@ tztime local {
         format = "  %d-%m  "
 }
 
-tztime 1 {
-	format = "  %H:%M  "
+tztime Indian {
+	format = "  %H:%M  %Z "
+        timezone = "Asia/Kolkata"
 }
 
+
+tztime London {
+        format = " %H:%M:%S %Z "
+        timezone = "Europe/London"
+}

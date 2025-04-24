@@ -1,47 +1,75 @@
-" Preferences.
+set visualbell t_vb=
 
-" Number
-:set number
-:set relativenumber
-
-" 2 ctrl+n for num and 3 ctrl+n for relnum
-:nmap <C-N><C-N> :set nu!<CR>
-:nmap <C-N><C-N><C-N> :set rnu!<CR>
-
-" interactive shell to recog .bashrc
-:set shell=/bin/bash\ -i
-
-" Plugins will be downloaded under the specified directory.
-call plug#begin('~/.vim/plugged')
-
-" auto complete file directory
-Plug 'junegunn/fzf.vim'
-Plug 'junegunn/fzf'
-
-" status colors
-Plug 'itchyny/lightline.vim'
+" left margin
 "
+set relativenumber
+set numberwidth=1
+
+" auto comment charac at front
+"when ENTER
+"when O from normal
+
+" status line
 "
-" Plug 'tpope/vim-sensible'
+set ruler
+
+" todo - fine tune man belloff
+" set errorbells=noeb
+
+" set background=dark
+syntax on
+" colorscheme desert
+
+" set tabstop=4
+" set shiftwidth=4
+
+autocmd BufRead,BufNewFile *.scad setlocal filetype=openscad syntax=ON tabstop=2 shiftwidth=2 noexpandtab
+
+autocmd BufRead,BufNewFile * setlocal formatoptions-=ro
+
+" tab for ident, space for align
+" tabstop/width 
+
+" ctrl+s = save_state
+" retains selection, insert mode
 "
-" Plug 'junegunn/seoul256.vim'
+noremap  <C-S>      :update<CR>
+vnoremap <C-S> <C-C>:update<CR>gv
+inoremap <C-S> <C-O>:update<CR>
+
+" going up/down in a wrapped lines
+nnoremap k gk
+nnoremap j gj
+
+" Plugins/Package Manager >= vim8
+" 
+packadd minpac
+call minpac#init()
+
+" call minpac#update/status/clean() 
+" call minpac#add('un_id/repo', {'type': 'start/opt'})
 "
-" Latex Plugins Finally!!
-" Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug 'lervag/vimtex'
+call minpac#add('k-takata/minpac',{'type': 'opt'})
 
-call plug#end()
+call minpac#add('ubaldot/vim-manim')
+" custom keybinding for vim-manim
+noremap  <C-O>      :
+vnoremap <C-O>      :
+inoremap <C-O>      :
 
-" get lightline working
-set laststatus=2
+call minpac#add('sirtaj/vim-openscad')
+" call minpac#add('Thyrum/vim-stabs')
+" call minpac#add('kovisoft/slimv')
 
-" hiding mode
-set noshowmode
+" lisp with slimv+swank
+" ,c    - start complier
+" ,q    - quite window
+" ,b    - evaluate buffer
+" ,e    - evaluate expreesion
+" ,i    - inscpector
+" enter - go deeper on debugger
+" ^w w  - quick switch
+" 
+let g:limv_swank_cmd = '! tmux new-window -d -n REPL-SBCL "sbcl --load /home/hisacro/.vim/pack/minpac/start/slimv/slime/start-swank.lisp" '
 
-" color scheme 
-let g:lightline = {
-  		\ 'colorscheme': 'Tomorrow_Night_Eighties',
-		\ }
 
-" PDF viewer
-let g:vimtex_view_method = 'zathura'

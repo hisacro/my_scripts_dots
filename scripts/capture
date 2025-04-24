@@ -1,0 +1,6 @@
+#!/bin/sh
+
+t=`date +%Y_%+m_%d_%N.png`
+fswebcam -r "350x350" --gmt -D 3 -S 10 -F 30 --greyscale --line-colour "#979dae" --top-banner --png 7 --save /home/hisacro/Pictures/Screenshots/$t
+#fswebcam -r "350x350" --gmt -D 3 -S 10 -F 30  --line-colour "#979dae" --top-banner --png 7 --save /home/hisacro/Pictures/Screenshots/$t
+xclip -selection clipboard -t image/png /home/hisacro/Pictures/Screenshots/$t 

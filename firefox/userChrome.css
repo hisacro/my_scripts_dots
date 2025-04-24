@@ -4,17 +4,17 @@
     --wallpaper: url("/home/hisacro/.wall_paper/neong.jpg");
 
     /* Special */
-    --background: #000000;
-    --foreground: #b7e0b6;
-    --cursor: #b7e0b6;
+    --background: #121212;
+    --foreground: #979dae;
+    --cursor: #979dae;
 
     /* Colors */
     --color0: #000000;
     --color1: #15AE15;
     --color2: #259825;
     --color3: #2BB02B;
-    --color4: #26D026;
-    --color5: #54AE54;
+    --color4: #494949;
+    --color5: #e67e22;
     --color6: #5ED65E;
     --color7: #b7e0b6;
     --color8: #809c7f;
@@ -29,7 +29,7 @@
 
 
 :root {
-	--accent: var(--color4);
+	--accent: var(--color5);
 
 	--toolbar-bgimage: none !important;
 	--arrowpanel-dimmed: transparent !important;
@@ -84,11 +84,11 @@
 /* auto hover 
 #main-window:not([customizing]) #navigator-toolbox:not(:focus-within):not(:hover) { margin-top: : -38PX;}*/
 #main-window:not([customizing]) #navigator-toolbox:not(:focus-within){
-    margin-top: -38px;
+     margin-top: -43px !important;; 
 }
 #navigator-toolbox {
     transition: 0.3s margin-top ease-out;
-	  text-align: center;
+	  /*! text-align: center; */
 	  padding-left: 10px ;
 		padding-right: 10px ;
 }
@@ -128,6 +128,27 @@ findbar {
 	  padding-left: 50px !important;
 }
 
+/* new FF 133 moving tabs on bottom & search on top */
+    /* Extra alt menubar */
+    #toolbar-menubar {
+      order: 0 !important;
+    }
+
+    /* SEARCH BAR TOOLBAR */
+    #nav-bar {
+      order: 1 !important;
+    }
+
+    /* TABS TOOLBAR titlebar*/
+    #TabsToolbar {
+      order: 2 !important;
+    }
+
+    /* BOOKMARKS TOOLBAR*/
+    #PersonalToolbar {
+      order: 3 !important;
+    }
+/* */
 /* Prevents White pre-load flash */
 #browser vbox#appcontent tabbrowser,
 #content,
@@ -159,11 +180,19 @@ browser[type=content] > html {
 
 /*tabs-down*/
 #titlebar {
--moz-box-ordinal-group: 3 !important;
-margin-bottom: -10px !important;
-
+order: 4 !important;
+margin: -5px 0px -5px 0px !important;
 }
 
+/* removing in-between lines */
+.tabbrowser-tab::after, .tabbrowser-tab::before {
+	border: 0px !important;
+}
+
+/* removing new tab */
+#tabs-newtab-button {
+ display: none !important;
+}
 
 /* Change colour of fill animation when tab has finished loading */
 .tabbrowser-tab { --tab-loading-fill: var(--accent) !important; }
@@ -179,10 +208,10 @@ margin-bottom: -10px !important;
 
 /* set height, width on the tabs  */
 tab {
-	  min-width: 35px !important;
-	  max-width: 35px !important;
+	  min-width: 32px !important;
+	  max-width: 38px !important;
 	  max-height: 10px !important;
-	  min-height: 21px !important;
+	  min-height: 35px !important;
 /*  min-width: 3px !important;
 	  max-width: 450px !important;
 	  position: relative; */
@@ -199,7 +228,7 @@ tab {
 }
 
 .tab-content .tab-icon-image{
-
+scale: 1.2 !important;
 }
 /*centre icon 
 .tabbrowser-tab:not([selected=true]) .tab-icon-image{
@@ -209,23 +238,24 @@ tab {
 
 /* current tab */ 
 .tabbrowser-tab[selected=true] .tab-background{
-  border: 1px solid var(--accent) !important;
-  background: none !important;
-	margin: 0px 5px 0px 5px !important;
+	background: none !important;
+  border: .5px solid var(--accent) !important;
+	/*margin: 0px 0px 0px px !important;*/
 }
 
 /*centre icon current tab*/
 .tabbrowser-tab[selected=true] .tab-icon-image{
-	display: block;
-	margin-left: 5px;
-	align-content: center;
+  /*border: 1px solid var(--accent) !important;*/
+	align-content: center !important;
+	padding: 3px;
 }
 
 /* invert icons on non-selected git prob solved */
 .tabbrowser-tab:not([selected]) .tab-icon-image
 {
-  filter: hue-rotate(126deg) !important;
-	opacity: .65 !important;
+  /* filter: hue-rotate(126deg) grayscale(50%) !important; */
+  /*! filter: grayscale(80%) sepia(60%) !important; */
+  opacity: .65 !important;
 }
 
 
@@ -250,7 +280,7 @@ tab:only-of-type { display: none; }
 
 
 #navigator-toolbox{
-margin-top: 0px;
+/* margin-top: 0px;
 padding-top:1px !important;
 
 }
@@ -261,6 +291,10 @@ top: 0px;
 }
  
 /* hiding private browsing icon */
-#TabsToolbar .private-browsing-indicator { display: none; }
+#TabsToolbar .private-browsing-indicator { display: none; !important; }
 
-
+#private-browsing-indicator-with-label, .titlebar-spacer[type="post-tabs"] { display: none !important; }
+	
+#firefox-view-button {
+display: none !important;
+}

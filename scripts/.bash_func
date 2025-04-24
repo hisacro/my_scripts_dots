@@ -1,0 +1,137 @@
+ts_feh () {
+for i in $(ls); do
+	tsp feh $i;
+done
+}
+
+network () {
+service  connman stop
+service  NetworkManager start
+}
+
+finit() {
+            fossil init $1.fossil && \
+            chmod 644 $1.fossil && \
+            fossil open $1.fossil && \
+            fossil user password $USER $PASSWD && \
+            fossil remote-url https://$USER:$PASSWD@fsl.displ.nl/$1 && \
+            scp  $1.fossil bsdserver:/var/www/htdocs/fsl.displ.nl/  && \
+            ssh bsdserver chmod 664 /var/www/htdocs/fsl.displ.nl/$1.fossil
+            fossil ui
+ }
+
+ytdla () {
+        yt-dlp -x --audio-format "opus" --yes-playlist "${1}" -o "%(title)s.%(ext)s"
+}
+
+ytdls () {
+	ytdla `ytfzf -L "${1}"`
+}
+
+radio_down () {
+	name=$(playerctl metadata "title")
+        yt-dlp -x --audio-format "opus" --yes-playlist `ytfzf -L $name` -o "/home/hisacro/Music/radio/%(title)s.%(ext)s"
+}
+
+snap() {
+#	head -n1 /dev/ttyACM0 | grep true 
+	adb shell input keyevent 27 && echo 'done adb'  &
+	fswebcam -c /home/hisacro/.config/fswebcam/extweb_conf /tmp/`date +%s`.png && echo 'done top'; 
+	#ssh tab_local './shot.sh' && echo 'done front' &
+	sleep 0.3
+	adb shell input keyevent  KEYCODE_HOME && echo 'back' 
+ 	#vgrabbj -f /tmp/3.png;
+	# G1 X40 Y100
+}
+
+noks_display() { 
+	adb devices
+	adb tcpip 5434
+	sleep 5
+	adb connect 192.168.43.1:5434 
+	echo "EEjit plug into wall socket fast"
+	sleep 15
+	scrcpy -b2M -m800 --max-fps 15
+}
+
+noks_hotspot() {
+	adb shell am start -S com.android.settings/.TetherSettings
+	adb shell input keyevent 20
+	adb shell input keyevent 66
+	adb shell am force-stop com.android.settings
+}
+
+noks_data() {
+	adb shell input keyevent KEYCODE_MENU
+	sleep 1
+	adb shell input keyevent KEYCODE_MENU
+	adb shell am start -a android.settings.DATA_ROAMING_SETTINGS
+	sleep 1
+	# when 2 sims are active s/600/700/g
+	adb shell input tap 700 600 #advanced
+	sleep 0.5
+	adb shell input tap 700 600 #preffered network 
+	sleep 0.5
+	adb shell input tap 500 800 #2G 
+	sleep 0.5
+	adb shell input keyevent HOME
+	adb shell am start -a android.settings.DATA_ROAMING_SETTINGS
+	sleep 1
+	adb shell input tap 700 600 #advanced
+	sleep 0.5
+	adb shell input tap 700 600 #preffered network 
+	sleep 0.5
+	adb shell input tap 500 600 #3G
+	sleep 0.5
+	adb shell input keyevent HOME
+	adb shell am force-stop com.android.settings
+}
+
+dic() {
+	# spell check and passing 1st recommendation
+	word=$(echo "$1" | aspell -a | awk 'FNR == 2{print $5}'  | tr -d ',' )
+	# if spelled right use that as word
+	[[ $word == ''  ]] && word=$1 
+	# meaning of it
+	dictd --test $word 2> cat #suppress log
+	# history of search
+	grep $word ~/.dic_history > /dev/null || echo $word >> ~/.dic_history
+}
+
+whoogle() {
+	cd /home/hisacro/Packages/whoogle-search/
+	python3 -m venv venv
+	source venv/bin/activate
+	echo "try localhost:5000"
+	./run
+}
+
+#sleep_toggle() {
+## on
+#if { $1 == 'on' } sudo systemctl unmask sleep.target suspend.target hibernate.target hybrid-sleep.target && exit
+#sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+#}
+
+
+upload() {
+	t=$(dirname $1)/$(basename $1)
+	t1=$(echo file=@$t)
+	curl -F"$t1" https://displ.nl/cgi/test.cgi
+##	curl -F'file=@"$1"' https://displ.nl/cgi/test.cgi
+}
+
+pdf() {
+	nohup xpdf $1 &
+}
+
+compile () {
+	gcc -Wall $1 -lm && ./a.out
+}
+
+radio () {
+	mpv  /home/hisacro/Music/Radios.m3u
+}
+
+send_t430 () {
+	scp $1 "golu@10.0.0.7:/tmp/$2"
+}
