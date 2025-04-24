@@ -145,6 +145,10 @@ source /usr/share/fzf/key-bindings.bash
 # shortcuts
 bind -x '"\C-l": clear'
 
+<<<<<<< HEAD:scripts/.bashrc
+=======
+
+>>>>>>> e171853 (renamed dotfiles):scripts/bashrc
 # compression audio 
 # for i in *; do ffmpeg -i "$i"  -codec:a libmp3lame -b:a 64k  "compressed/$i"; done
 
